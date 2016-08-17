@@ -4,7 +4,7 @@
 
 ;; Author: Chaz <chazwize@gmail.com>
 ;; Keywords: http
-;; Version: 0.0.1
+;; Version: 0.0.11
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -29,7 +29,6 @@
   (interactive)
   (split-window-below)
   )
-
 
 (provide 'restman)
 ;;; restman.el ends here
