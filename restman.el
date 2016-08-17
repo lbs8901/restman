@@ -27,7 +27,9 @@
 
 (defun restman-abc ()
   (interactive)
-  (forward-word 2))
+  (generate-new-buffer "bar")
+  )
+
 
 (provide 'restman)
 ;;; restman.el ends here
