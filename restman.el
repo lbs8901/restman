@@ -27,7 +27,7 @@
 
 (defun restman-abc ()
   (interactive)
-  (generate-new-buffer "bar")
+  (split-window-below)
   )
 
 
