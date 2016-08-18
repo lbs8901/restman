@@ -25,9 +25,29 @@
 
 ;;; Code:
 
-(defun restman-abc ()
+(require 'button)
+
+(defun restman/create-buffer ()
+  (let ((-buf (generate-new-buffer "untitled")))
+    (switch-to-buffer -buf)
+    (funcall initial-major-mode)
+    (setq buffer-offer-save t))
+  )
+
+(defun restman/collect-line ()
+  (next-line)
+  (insert-button "fsf"
+                 'action (lambda (x) (browse-url (button-get x 'url)))
+                 'url "http://www.fsf.org")
+  )
+
+(defun restman/init ()
   (interactive)
-  (split-window-below)
+  (delete-other-windows)
+  ;;(split-window-left)
+  ;;(insert-button "foo" 'action (lambda (x) (find-file user-init-file)))
+  (active-minibuffer-window)
+
   )
 
 (provide 'restman)
