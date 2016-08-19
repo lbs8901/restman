@@ -25,30 +25,54 @@
 
 ;;; Code:
 
+(require 'dired+)
+(require 'widget)
+
+(eval-when-compile
+  (require 'wid-edit))
+
 (require 'button)
 
 (defun restman/create-buffer ()
-  (let ((-buf (generate-new-buffer "untitled")))
+  (let ((-buf (generate-new-buffer "*restman*")))
     (switch-to-buffer -buf)
     (funcall initial-major-mode)
+    (read-only-mode)
     (setq buffer-offer-save t))
   )
 
-(defun restman/collect-line ()
+
+(defun restman/create-collection-item ()
   (next-line)
+
   (insert-button "fsf"
                  'action (lambda (x) (browse-url (button-get x 'url)))
                  'url "http://www.fsf.org")
+
+  (next-line)
+  (widget-create 'editable-field
+                 :size 13
+                 :format "Name: %v " ; Text after the field!
+                 "My Name")
+
   )
 
-(defun restman/init ()
-  (interactive)
+(qqqdefun restman/init ()
+  "restman init"
   (delete-other-windows)
-  ;;(split-window-left)
-  ;;(insert-button "foo" 'action (lambda (x) (find-file user-init-file)))
-  (active-minibuffer-window)
+  (split-window-right 10)
+  (restman/create-buffer)
+  (with-help-window "*restman result*"
+     (princ "hello from test"))
+  (other-window 2)
+  ;; (restman/create-collection-list)
 
   )
+
+(defun restman()
+  (interactive)
+  (restman/init)
+)
 
 (provide 'restman)
 ;;; restman.el ends here
